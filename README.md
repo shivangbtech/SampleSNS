@@ -1,4 +1,5 @@
-# A Spring Boot application that demonstrates integration with AWS SNS (Simple Notification Service) and SQS (Simple Queue Service), running locally using LocalStack for development and testing.
+# AWS SNS (Simple Notification Service) and SQS (Simple Queue Service) with Spring-Boot
+A Spring Boot application that demonstrates integration with AWS SNS (Simple Notification Service) and SQS (Simple Queue Service), running locally using LocalStack for development and testing.
 
 ## 🛠 Features
 - Publish messages to SNS topics
