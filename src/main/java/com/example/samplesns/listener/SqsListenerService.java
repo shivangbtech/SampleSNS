@@ -1,4 +1,4 @@
-package com.example.samplesns.service;
+package com.example.samplesns.listener;
 
 import java.net.URI;
 import java.util.List;
