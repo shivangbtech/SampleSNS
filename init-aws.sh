@@ -1,10 +1,21 @@
 #!/bin/bash
+set -e
 
-awslocal sns create-topic --name my-topic
-awslocal sqs create-queue --queue-name my-queue
-awslocal sns subscribe \
-  --topic-arn arn:aws:sns:us-east-1:000000000000:my-topic \
-  --protocol sqs \
-  --notification-endpoint arn:aws:sqs:us-east-1:000000000000:my-queue
+ENDPOINT_URL=http://localstack:4566
 
+echo "⏳ Waiting for LocalStack..."
 
+until aws --endpoint-url=$ENDPOINT_URL sqs list-queues > /dev/null 2>&1; do
+  echo "🕐 Still waiting..."
+  sleep 2
+done
+
+echo "✅ LocalStack is up"
+
+echo "🚀 Creating SQS queue..."
+aws --endpoint-url=$ENDPOINT_URL sqs create-queue --queue-name my-queue
+
+echo "📢 Creating SNS topic..."
+aws --endpoint-url=$ENDPOINT_URL sns create-topic --name my-topic
+
+echo "✅ AWS init complete"
